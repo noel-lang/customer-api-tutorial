@@ -27,12 +27,16 @@ public class CustomerapiApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		User user = new User();
-		user.setEmail("noel@noel.de");
-		user.setPassword(passwordEncoder.encode("1234"));
+		try {
+			User user = new User();
+			user.setEmail("noel@noel.de");
+			user.setPassword(passwordEncoder.encode("1234"));
 
-		User saved = userRepository.save(user);
+			User saved = userRepository.save(user);
 
-		System.out.println(jwtTokenProvider.generateToken(saved.getEmail()));
+			System.out.println(jwtTokenProvider.generateToken(saved.getEmail()));
+		} catch (Exception e) {
+			//
+		}
 	}
 }
